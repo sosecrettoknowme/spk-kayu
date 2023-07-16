@@ -9,17 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('alternatives', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode_alternative');
-            $table->string('nm_alternative');
-            $table->string('alamat');
-            $table->string('no_telp');
-            $table->timestamps();
-        });
-    }       
+        public function up(): void
+        {
+            Schema::create('alternatives', function (Blueprint $table) {
+                $table->id();
+                $table->string('kode_alternative');
+                $table->string('nm_alternative');
+                $table->string('alamat');
+                $table->string('no_telp');
+                $table->timestamps();
+            });
+        }       
 
     /**
      * Reverse the migrations.

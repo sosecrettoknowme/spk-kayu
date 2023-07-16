@@ -12,6 +12,7 @@
     <table class="table table-striped">
         <tr>
             <th>No</th>
+            <th>Kode</th>
             <th class="text-center">Nama Alternative</th>
             <th>Alamat Alternative</th>
             <th>No Telepon</th>
@@ -20,6 +21,7 @@
         @foreach ($alternatives as $alt)
         <tr>
             <td>{{ $loop->iteration }}</td>
+            <td>{{ $alt->kode_alternative }}</td>
             <td>{{ $alt->nm_alternative }}</td>
             <td>{{ $alt->alamat }}</td>
             <td>{{ $alt->no_telp }}</td>

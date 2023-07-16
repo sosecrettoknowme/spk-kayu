@@ -39,14 +39,17 @@
 
 @section('container')
     <h1 class="text-center">Halaman Tambah Data Penilaian</h1>
-    @if ($alternative->datapenilaian)
+    {{-- @if ($alternative->datapenilaian)
         <p class="text-center">Alternative dinilai pada: {{ $alternative->datapenilaian->created_at->format('Y-m-d') }}</p>
     @else
         <p class="text-center">Tekan Tombol Submit Maka Tanggal Penilaian Di Isi Secara Otomatis</p>
-    @endif
+    @endif --}}
     <form action="{{ route('dashboard.datapenilaian.store', $alternative->id) }}" method="POST">
         @csrf
-
+        <div class="mb-3">
+            <label for="kode_penilaian" class="form-label">Kode Penilaian</label>
+            <input type="text" class="form-control" id="kode_penilaian" name="kode_penilaian">
+        </div>
         @php
             $kriteriaIds = [];
         @endphp

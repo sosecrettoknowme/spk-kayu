@@ -8,6 +8,12 @@
              {{ session('success') }}
          </div>
      @endif
+     <form action="{{ route('datapenilaian.destroyAll') }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Hapus Semua Data Penilaian</button>
+    </form>
+    <br>
      <table class="table table-striped">
          <tr>
              <th>No</th>

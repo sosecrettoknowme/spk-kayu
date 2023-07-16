@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\DataPenilaian;
 use App\Models\Kriteria;
 use App\Models\Alternative;;
@@ -34,41 +34,48 @@ class DataPenilaianController extends Controller
         $subkriterias = SubKriteria::with('kriteria')->get();
         $editMode = $alternative->hasDataPenilaian();
         return view('dashboard.datapenilaian.create', compact('alternative', 'subkriterias', 'editMode'));
-        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
-    {
-        $alternative = Alternative::findOrFail($id);
-    
-        // Validasi input
-        $request->validate([
-            'subkriteria_id' => 'required|array',
-            'subkriteria_id.*' => 'exists:subkriterias,id',
-        ]);
-    
-        // Simpan data penilaian
-        foreach ($request->subkriteria_id as $subkriteriaId) {
-            $dataPenilaian = new DataPenilaian();
-            $dataPenilaian->alternative_id = $alternative->id;
-            $dataPenilaian->subkriteria_id = $subkriteriaId;
-            // Lakukan operasi penyimpanan lainnya jika ada
-    
+  /**
+ 
 
-            // Set tanggal penilaian
+ * Store a newly created resource in storage.
+ */
+public function store(Request $request, $id)
+{
+    $alternative = Alternative::findOrFail($id);
+
+    // Validasi input
+    $request->validate([
+        'kode_penilaian' => 'required|unique:data_penilaians,kode_penilaian',
+        'subkriteria_id' => 'required|array',
+        'subkriteria_id.*' => 'exists:subkriterias,id',
+    ]);
+
+    // Simpan data penilaian
+    foreach ($request->subkriteria_id as $subkriteriaId) {
+        $dataPenilaian = new DataPenilaian();
+        $dataPenilaian->alternative_id = $alternative->id;
+        $dataPenilaian->subkriteria_id = $subkriteriaId;
+        // Lakukan operasi penyimpanan lainnya jika ada
+
+        // Set kode penilaian
+        $dataPenilaian->kode_penilaian = $request->kode_penilaian;
+
+        // Set tanggal penilaian
         $dataPenilaian->tanggal_penilaian = Carbon::now();
 
-            $dataPenilaian->save();
-        }
-    
-        return redirect()->route('datapenilaian.index')->with('success', 'Subkriteria berhasil ditambahkan.');
-
+        $dataPenilaian->save();
     }
- 
-    
+
+    return redirect()->route('datapenilaian.index')->with('success', 'Subkriteria berhasil ditambahkan.');
+}
+
+
+
     /**
      * Display the specified resource.
      */
@@ -110,8 +117,12 @@ class DataPenilaianController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DataPenilaian $dataPenilaian)
-    {
-        //
-    }
+    
+     public function destroy()
+     {
+         DataPenilaian::truncate(); // This will delete all rows in the data_penilaians table
+     
+         return redirect()->route('datapenilaian.index')->with('success', 'Semua data penilaian berhasil dihapus.');
+     }
+    
 }

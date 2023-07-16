@@ -11,18 +11,29 @@ class DataPenilaian extends Model
     protected $guarded = ['id'];
       protected $dates = ['tanggal_penilaian'];
 
-     public function alternative()
+    //  public function alternative()
+    // {
+    //     return $this->belongsTo(Alternative::class, 'alternative_id');
+    // }
+
+    // public function subKriteria()
+    // {
+    //     return $this->belongsTo(SubKriteria::class, 'subkriteria_id');
+    // }
+    public function alternative()
     {
         return $this->belongsTo(Alternative::class);
     }
-
-    public function subkriteria()
+    
+    public function subKriteria()
     {
-        return $this->hasMany(SubKriteria::class);
+        return $this->belongsTo(SubKriteria::class);
     }
+    
+
 
     public function dataPerhitungan()
-   {
-       return $this->hasMany(DataPerhitungan::class);
-   }
+    {
+        return $this->hasMany(DataPerhitungan::class, 'data_penilaian_id');
+    }
 }

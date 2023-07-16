@@ -16,9 +16,10 @@ class Alternative extends Model
     //     return $this->hasMany(DataPenilaian::class);
     // }
     public function dataPenilaian()
-{
-    return $this->hasOne(DataPenilaian::class, 'alternative_id');
-}
+    {
+        return $this->hasMany(DataPenilaian::class, 'alternative_id');
+    }
+    
 
     public function kriteria()
     {

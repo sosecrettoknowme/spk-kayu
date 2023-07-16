@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('data_penilaians', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_penilaian');
             $table->foreignId('alternative_id');
             $table->foreignId('subkriteria_id');
             $table->json('penilaian')->default('[]');

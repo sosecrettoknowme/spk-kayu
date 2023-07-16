@@ -1,4 +1,4 @@
-<header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: rgb(7, 55, 55)">
+<header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: rgb(44, 44, 24)">
   <img src="https://th.bing.com/th/id/OIP.huXPH2TskDVx0YGMzIDWTgHaEP?w=292&h=180&c=7&r=0&o=5&dpr=1.2&pid=1.7" alt="" width="50px" class="ms-4">
   <a class="navbar-brand col-md-3 col-lg-2 ms-0 px-3" href="#">SPK-MOORA</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">

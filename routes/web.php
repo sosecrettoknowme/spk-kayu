@@ -58,6 +58,9 @@ Route::resource('/dashboard/alternative', AlternativeController::class)->middlew
 
 Route::resource('/dashboard/datapenilaian', DataPenilaianController::class)->middleware('auth');
 Route::get('/dashboard/alternative/{id}/datapenilaian/create', [DataPenilaianController::class, 'create'])->name('datapenilaian.create');
+Route::delete('/dashboard/datapenilaian/delete-all', [DataPenilaianController::class, 'destroy'])->name('datapenilaian.destroyAll');
+
+
 // Route::post('/dashboard/alternative/{id}/datapenilaian', [DataPenilaianController::class, 'store'])->name('dashboard.datapenilaian.store');
 
 Route::post('/dashboard/alternative/{id}/datapenilaian', [DataPenilaianController::class, 'store'])->name('dashboard.datapenilaian.store');
